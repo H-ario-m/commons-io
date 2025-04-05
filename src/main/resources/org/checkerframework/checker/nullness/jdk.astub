@@ -1,0 +1,59 @@
+package java.io;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+// This file provides assumptions about JDK classes for the Nullness Checker
+class File {
+    @NonNull public String getAbsolutePath();
+    @NonNull public String getPath();
+    @Nullable public String getParent();
+    @Nullable public File getParentFile();
+    @NonNull public String getName();
+    @Nullable public String[] list();
+    @Nullable public File[] listFiles();
+}
+
+class FileInputStream {
+    public FileInputStream(@NonNull File file) throws FileNotFoundException;
+}
+
+class FileOutputStream {
+    public FileOutputStream(@NonNull File file) throws FileNotFoundException;
+    public FileOutputStream(@NonNull File file, boolean append) throws FileNotFoundException;
+}
+
+package java.nio.file;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+class Files {
+    public static @NonNull Path createDirectories(@NonNull Path dir, FileAttribute<?>... attrs) throws IOException;
+    public static @NonNull Path createDirectory(@NonNull Path dir, FileAttribute<?>... attrs) throws IOException;
+    public static boolean exists(@NonNull Path path, LinkOption... options);
+    public static boolean notExists(@NonNull Path path, LinkOption... options);
+    public static @NonNull DirectoryStream<Path> newDirectoryStream(@NonNull Path dir) throws IOException;
+    public static @NonNull DirectoryStream<Path> newDirectoryStream(@NonNull Path dir, @NonNull String glob) throws IOException;
+    public static @NonNull DirectoryStream<Path> newDirectoryStream(@NonNull Path dir, @NonNull DirectoryStream.Filter<? super Path> filter) throws IOException;
+    public static @Nullable byte[] readAllBytes(@NonNull Path path) throws IOException;
+    public static @NonNull Path write(@NonNull Path path, byte[] bytes, OpenOption... options) throws IOException;
+}
+
+class Path {
+    @NonNull Path getParent();
+    @NonNull Path getFileName();
+    @NonNull Path normalize();
+    @NonNull Path toAbsolutePath();
+    @NonNull File toFile();
+}
+
+package java.util;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+class Objects {
+    public static <T> @NonNull T requireNonNull(T obj);
+    public static <T> @NonNull T requireNonNull(T obj, String message);
+} 

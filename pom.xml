@@ -51,6 +51,11 @@ file comparators, endian transformation classes, and much more.
   </scm>
   <dependencies>
     <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <version>3.49.2</version>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
@@ -268,6 +273,30 @@ file comparators, endian transformation classes, and much more.
             <ruleset>src/conf/maven-pmd-plugin.xml</ruleset>
           </rulesets>
 		</configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+          <fork>true</fork>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.checkerframework</groupId>
+              <artifactId>checker</artifactId>
+              <version>3.49.2</version>
+            </path>
+          </annotationProcessorPaths>
+          <annotationProcessors>
+            <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+          </annotationProcessors>
+          <compilerArgs>
+            <arg>-Xmaxerrs</arg>
+            <arg>10000</arg>
+            <arg>-Awarns</arg>
+          </compilerArgs>
+        </configuration>
       </plugin>
     </plugins>
   </build>

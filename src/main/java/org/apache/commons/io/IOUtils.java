@@ -482,17 +482,17 @@ public class IOUtils {
 
     /**
      * Closes a {@link Closeable} unconditionally.
-     *
      * <p>
      * Equivalent to {@link Closeable#close()}, except any exceptions will be ignored. This is typically used in
      * finally blocks.
+     * </p>
      * <p>
      * Example code:
      * </p>
      * <pre>
      * Closeable closeable = null;
      * try {
-     *     closeable = new FileReader(&quot;foo.txt&quot;);
+     *     closeable = new FileReader("foo.txt");
      *     // process closeable
      *     closeable.close();
      * } catch (Exception e) {

@@ -86,6 +86,7 @@ import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.io.function.IOConsumer;
 import org.apache.commons.io.function.Uncheck;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
  * General file manipulation utilities.
@@ -1458,6 +1459,7 @@ public class FileUtils {
      * </p>
      *
      * @param directory the receiver for {@code mkdirs()}. If the {@code directory} already exists or is null, nothing happens.
+     * @return the given directory.
      * @throws IOException       if the directory was not created along with all its parent directories.
      * @throws IOException       if the given file object is not a directory.
      * @throws SecurityException See {@link File#mkdirs()}.
@@ -1534,11 +1536,11 @@ public class FileUtils {
     }
 
     /**
-     * Returns a {@link File} representing the system temporary directory.
+     * Gets a file representing the system temporary directory.
      *
-     * @return the system temporary directory as a File
-     * @since 2.0
+     * @return the system temporary directory.
      */
+    @NonNull
     public static File getTempDirectory() {
         return new File(getTempDirectoryPath());
     }
